@@ -25,7 +25,7 @@
       margin: 10px 0;
     }
   </style>
-  <title>Spanish Review Game</title>
+<title>Spanish Review Game</title>
 </head>
 <body>
   <h1>Spanish Review Game</h1>
@@ -39,23 +39,6 @@
   </div>
   <div class="footer">
     Designed and Made by Branson & Yuri
-  </div>
-
-  <!-- Secret Button -->
-  <div id="secret-button" style="position: fixed; top: 50%; right: -300px; background-color: #ffffff; border: 1px solid #ccc; padding: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);">
-    <button id="show-translations-button" style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer;">Show Translations</button>
-    <div id="translations-list" style="display: none;">
-      <!-- Add your translations here -->
-      <ul>
-        <li><strong>Buenos días:</strong> Good morning</li>
-        <li><strong>Buenas tardes:</strong> Good afternoon</li>
-        <li><strong>Buenas noches:</strong> Good evening</li>
-        <li><strong>¿Cómo te llamas?:</strong> What's your name?</li>
-        <li><strong>¿Cómo estás?:</strong> How are you?</li>
-        <li><strong>bien:</strong> well</li>
-        <!-- Add more translations -->
-      </ul>
-    </div>
   </div>
 
   <script>
@@ -157,14 +140,7 @@
       }
     }
 
-    // Secret button functions
-    document.getElementById("show-translations-button").addEventListener("click", function () {
-      var translationsList = document.getElementById("translations-list");
-      if (translationsList.style.display === "none" || translationsList.style.display === "") {
-        translationsList.style.display = "block";
-      } else {
-        translationsList.style.display = "none";
-      }
-    });
-
-    load
+    loadWords();
+  </script>
+</body>
+</html>
