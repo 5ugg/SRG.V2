@@ -53,24 +53,7 @@
         <li><strong>¿Cómo te llamas?:</strong> What's your name?</li>
         <li><strong>¿Cómo estás?:</strong> How are you?</li>
         <li><strong>bien:</strong> well</li>
-        <li><strong>muy bien:</strong> very well</li>
-        <li><strong>mal:</strong> bad</li>
-        <li><strong>muy mal:</strong> very bad</li>
-        <li><strong>más o menos:</strong> so-so</li>
-        <li><strong>cansado:</strong> tired</li>
-        <li><strong>triste:</strong> sad</li>
-        <li><strong>Tú:</strong> You</li>
-        <li><strong>Usted:</strong> You (formal)</li>
-        <li><strong>Como te llamas?:</strong> What's your name?</li>
-        <li><strong>Me llamo:</strong> My name is</li>
-        <li><strong>señor:</strong> mister</li>
-        <li><strong>señora:</strong> Mrs.</li>
-        <li><strong>señorita:</strong> Miss</li>
-        <li><strong>adiós:</strong> goodbye</li>
-        <li><strong>hasta luego:</strong> see you later</li>
-        <li><strong>hasta pronto:</strong> see you soon</li>
-        <li><strong>hasta mañana:</strong> see you tomorrow</li>
-        <li><strong>nos vemos:</strong> see you</li>
+        <!-- Add more translations -->
       </ul>
     </div>
   </div>
@@ -126,4 +109,62 @@
         shuffledIndexes = shuffleArray(words.length);
       }
       var randomIndex = shuffledIndexes[currentIndex];
-      document.getElementById("question").textContent = words[randomIndex][0
+      document.getElementById("question").textContent = words[randomIndex][0];
+      document.getElementById("result").textContent = '';
+      document.getElementById("answer").value = ''; // Clear the input box
+    }
+
+    function checkAnswer() {
+      var userAnswer = document.getElementById("answer").value.toLowerCase();
+      var randomIndex = shuffledIndexes[currentIndex];
+      var correctAnswer = words[randomIndex][1].toLowerCase();
+      var resultMessage = document.getElementById("result"); // Get the result element
+      
+      if (userAnswer === correctAnswer) {
+        resultMessage.textContent = "Correct!";
+        currentStreak++;
+        if (currentStreak > highestStreak) {
+          highestStreak = currentStreak;
+        }
+      } else {
+        resultMessage.textContent = "Incorrect. The correct answer is: " + words[randomIndex][1];
+        currentStreak = 0;
+      }
+      
+      document.getElementById("streak").textContent = "Streak: " + currentStreak + " | Highest Streak: " + highestStreak;
+      setTimeout(displayQuestion, 1000); // Change to the next question after 1 second
+    }
+
+    function clearAnswer() {
+      document.getElementById("answer").value = '';
+      document.getElementById("result").textContent = '';
+    }
+
+    // Fisher-Yates shuffle algorithm to shuffle the indexes
+    function shuffleArray(arrayLength) {
+      var array = Array.from({ length: arrayLength }, (_, i) => i);
+      for (var i = arrayLength - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    // Function to handle Enter key press
+    function handleKeyPress(event) {
+      if (event.keyCode === 13) { // 13 is the key code for Enter
+        checkAnswer();
+      }
+    }
+
+    // Secret button functions
+    document.getElementById("show-translations-button").addEventListener("click", function () {
+      var translationsList = document.getElementById("translations-list");
+      if (translationsList.style.display === "none" || translationsList.style.display === "") {
+        translationsList.style.display = "block";
+      } else {
+        translationsList.style.display = "none";
+      }
+    });
+
+    load
